@@ -1,0 +1,68 @@
+import { ACTION_TYPES } from '../../constants/action-types';
+import axios from 'axios';
+
+const state = {
+  mainAreas: [],
+  subAreas: [],
+  injurySpots: [],
+  injuryTypes: [],
+};
+
+const mutations = {
+  [ACTION_TYPES.fetchAreas]: (state, mainAreas) =>
+    (state.mainAreas = mainAreas),
+  [ACTION_TYPES.fetchSubAreas]: (state, subAreas) =>
+    (state.subAreas = subAreas),
+  [ACTION_TYPES.fetchInjurySpot]: (state, injurySpots) =>
+    (state.injurySpots = injurySpots),
+  [ACTION_TYPES.fetchInjuryType]: (state, injuryTypes) =>
+    (state.injuryTypes = injuryTypes),
+};
+
+const actions = {
+  fetchMainAreas: async ({ commit }) => {
+    axios
+      .get('http://localhost:8080/api/masterdata/mainAreas/')
+      .then((res) => {
+        commit(ACTION_TYPES.fetchAreas, res.data);
+      })
+      .catch((err) => console.log(err.message));
+  },
+  fetchSubAreas: async ({ commit }) => {
+    axios
+      .get('http://localhost:8080/api/masterdata/subAreas/')
+      .then((res) => {
+        commit(ACTION_TYPES.fetchSubAreas, res.data);
+      })
+      .catch((err) => console.log(err.message));
+  },
+  fetchInjurySpot: async ({ commit }) => {
+    const response = await axios.get(
+      'http://localhost:8080/api/masterdata/injurySpots/'
+    );
+    commit(ACTION_TYPES.fetchInjurySpot, response.data);
+  },
+  fetchInjuryType: async ({ commit }) => {
+    const response = await axios.get(
+      'http://localhost:8080/api/masterdata/injuryTypes/'
+    );
+    commit(ACTION_TYPES.fetchInjuryType, response.data);
+  },
+};
+
+const getters = {
+  AllMainAreas: (state) => state.mainAreas,
+  SubAreas: (state) => (picked, mainAreas) => {
+    const filter = picked === '' ? mainAreas : picked;
+    return state.subAreas.filter((sub) => sub.mainAreaParentId === filter);
+  },
+  AllInjurySpots: (state) => state.injurySpots,
+  AllInjuryTypes: (state) => state.injuryTypes,
+};
+
+export default {
+  state,
+  mutations,
+  actions,
+  getters,
+};
