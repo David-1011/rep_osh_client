@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
   fetchMainAreas: async ({ commit }) => {
     axios
-      .get('http://localhost:8080/api/masterdata/mainAreas/')
+      .get('https://osh-restapi.azurewebsites.net/api/masterdata/mainAreas/')
       .then((res) => {
         commit(ACTION_TYPES.fetchAreas, res.data);
       })
@@ -30,7 +30,7 @@ const actions = {
   },
   fetchSubAreas: async ({ commit }) => {
     axios
-      .get('http://localhost:8080/api/masterdata/subAreas/')
+      .get('https://osh-restapi.azurewebsites.net/api/masterdata/subAreas/')
       .then((res) => {
         commit(ACTION_TYPES.fetchSubAreas, res.data);
       })
@@ -38,13 +38,13 @@ const actions = {
   },
   fetchInjurySpot: async ({ commit }) => {
     const response = await axios.get(
-      'http://localhost:8080/api/masterdata/injurySpots/'
+      'https://osh-restapi.azurewebsites.net/api/masterdata/injurySpots/'
     );
     commit(ACTION_TYPES.fetchInjurySpot, response.data);
   },
   fetchInjuryType: async ({ commit }) => {
     const response = await axios.get(
-      'http://localhost:8080/api/masterdata/injuryTypes/'
+      'https://osh-restapi.azurewebsites.net/api/masterdata/injuryTypes/'
     );
     commit(ACTION_TYPES.fetchInjuryType, response.data);
   },
