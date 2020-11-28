@@ -36,7 +36,6 @@
               type="text"
               class="form-control"
               id="input3"
-              name="firstName2"
               autocomplete="off"
               v-model="firstName2"
             />
@@ -83,58 +82,64 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
- name: "PersonalData",
- computed: {
-   firstName1: {
-     get() {
-       return this.$store.state.personalData.injured.firstName
-     },
-     set(value) {
-       this.setFirstName1(value)
-     },
-   },
-  lastName1: {
-    get() {
-         return this.$store.state.personalData.injured.lastName
+  name: "PersonalData",
+  computed: {
+    firstName1: {
+      get() {
+        return this.$store.state.personalData.injured.firstName;
+      },
+      set(value) {
+        this.setFirstName1(value);
+      }
     },
-    set(value) {
-      this.setLastName1(value)
-    }
-  },
-  firstName2: {
-    get() {
-      return this.$store.state.personalData.witness.firstName
+    lastName1: {
+      get() {
+        return this.$store.state.personalData.injured.lastName;
+      },
+      set(value) {
+        this.setLastName1(value);
+      }
     },
-    set(value) {
-      this.setFirstName2(value)
-    }
-  },
+    firstName2: {
+      get() {
+        return this.$store.state.personalData.witness.firstName;
+      },
+      set(value) {
+        this.setFirstName2(value);
+      }
+    },
     lastName2: {
-    get() {
-         return this.$store.state.personalData.witness.lastName
+      get() {
+        return this.$store.state.personalData.witness.lastName;
+      },
+      set(value) {
+        this.setLastName2(value);
+      }
     },
-    set(value) {
-      this.setLastName2(value)
-    }
-  },
-  noWitness: {
-    get() {
-         return this.$store.state.personalData.witness.noWitness
+    noWitness: {
+      get() {
+        return this.$store.state.personalData.witness.noWitness;
+      },
+      set(value) {
+        this.setNoWitness(value);
+      }
     },
-    set(value) {
-      this.setNoWitness(value)
-    }
+    ...mapState({
+      errors: state => state.personalData.errors
+    })
   },
-  ...mapState({
-    errors: state => state.personalData.errors
-  })
- },
- methods: {
-     ...mapActions(['setFirstName1', 'setLastName1', 'setFirstName2', 'setLastName2', 'setNoWitness']),
- },
-}
+  methods: {
+    ...mapActions([
+      "setFirstName1",
+      "setLastName1",
+      "setFirstName2",
+      "setLastName2",
+      "setNoWitness"
+    ])
+  }
+};
 </script>
 
 <style>

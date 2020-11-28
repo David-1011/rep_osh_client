@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer mt-auto py-3 bg-light">
+  <footer class="footer mt-auto py-3 bg-dark">
     <div class="container">
       <span class="text-muted">Place sticky footer content here.</span>
     </div>
@@ -8,8 +8,8 @@
 
 <script>
 export default {
- name: "Footer"
-}
+  name: "Footer"
+};
 </script>
 
 <style scoped>
