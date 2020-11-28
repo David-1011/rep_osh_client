@@ -5,6 +5,8 @@ import personalData from './modules/personal-data';
 import incidentData from './modules/incident-data';
 import injuryData from './modules/injury-data';
 
+import router from '../router';
+
 const state = {};
 
 const mutations = {
@@ -15,19 +17,21 @@ const mutations = {
 };
 
 const actions = {
-  postIncident: async ({ commit }) => {
+  postIncident: async () => {
     const params = {
-      message: 'Hi',
       personalData: personalData.state,
       incidentData: incidentData.state,
       injuryData: injuryData.state,
     };
-    console.log(params);
-    const response = await axios.post(
-      'http://localhost:8080/api/incidents/',
-      params
-    );
-    commit('test', response);
+    axios
+      .post('http://localhost:8080/api/incidents/', params)
+      .then(() => {
+        store.dispatch('resetPersonalData');
+        store.dispatch('resetIncidentData');
+        store.dispatch('resetInjuryData');
+        router.push('/');
+      })
+      .catch((err) => console.log(err));
   },
 };
 

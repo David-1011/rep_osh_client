@@ -1,14 +1,19 @@
 import { ACTION_TYPES } from '../../constants/action-types';
 import moment from 'moment';
-const state = {
-  incidentDate: moment().format('YYYY-MM-DD'),
-  incidentTime: moment().format('HH:mm:ss'),
-  incidentDescription: '',
-  mainArea: '',
-  subArea: '',
-  additionalLocationInfo: '',
-  errors: [],
+
+const getDefaultState = () => {
+  return {
+    incidentDate: moment().format('YYYY-MM-DD'),
+    incidentTime: moment().format('HH:mm:ss'),
+    incidentDescription: '',
+    mainArea: '',
+    subArea: '',
+    additionalLocationInfo: '',
+    errors: [],
+  };
 };
+
+const state = getDefaultState();
 
 const mutations = {
   [ACTION_TYPES.setIncidentDate]: (state, date) => (state.incidentDate = date),
@@ -24,6 +29,8 @@ const mutations = {
   [ACTION_TYPES.setAdditionalLocationInfo]: (state, info) =>
     (state.additionalLocationInfo = info),
   [ACTION_TYPES.setIncErrors]: (state, errors) => (state.errors = errors),
+  [ACTION_TYPES.resetIncidentData]: (state) =>
+    Object.assign(state, getDefaultState()),
 };
 
 const actions = {
@@ -47,6 +54,9 @@ const actions = {
   },
   setIncErrors: ({ commit }, data) => {
     commit(ACTION_TYPES.setIncErrors, data);
+  },
+  resetIncidentData: ({ commit }) => {
+    commit(ACTION_TYPES.resetIncidentData);
   },
 };
 

@@ -123,79 +123,87 @@
 </template>
 
 <script>
-import {  mapActions, mapGetters, mapState} from 'vuex'
-import moment from 'moment'
+import { mapActions, mapGetters, mapState } from "vuex";
+import moment from "moment";
 export default {
-    name: "IncidentData",
-    data() {
-      return {
-        maxDate: moment().format('YYYY-MM-DD'),
-        maxTime: moment().format('HH:mm')
+  name: "IncidentData",
+  data() {
+    return {
+      maxDate: moment().format("YYYY-MM-DD"),
+      maxTime: moment().format("HH:mm")
+    };
+  },
+  computed: {
+    incidentDate: {
+      get() {
+        return this.$store.state.incidentData.incidentDate;
+      },
+      set(value) {
+        this.setIncidentDate(value);
       }
     },
-    computed: {
-      incidentDate: {
-        get() {
-          return this.$store.state.incidentData.incidentDate
-        },
-        set(value) {
-          this.setIncidentDate(value)
-        }
+    incidentTime: {
+      get() {
+        return this.$store.state.incidentData.incidentTime;
       },
-      incidentTime: {
-        get() {
-          return this.$store.state.incidentData.incidentTime
-        }, 
-        set(value) {
-          this.setIncidentTime(value)
-        }
-      },
-      incidentDescription: {
-        get() {
-          return this.$store.state.incidentData.incidentDescription
-        },
-        set(value) {
-          this.setIncidentDescription(value)
-        }
-      },
-      incidentMainArea: {
-        get() {
-          return this.$store.state.incidentData.mainArea
-        }, 
-        set(value)  {
-          this.setMainArea(value)
-        }
-      },
-      incidentSubArea: {
-        get() {
-          return this.$store.state.incidentData.subArea
-        },
-        set(value) {
-          console.log(value)
-          this.setSubArea(value)
-        }
-      },
-      additionalLocationInfo: {
-        get()  {
-          return this.$store.state.incidentData.additionalLocationInfo
-        }, 
-        set(value){
-          this.setAdditionalLocationInfo(value)
-        }
-      },
-    ...mapGetters(['AllMainAreas', 'SubAreas']),
-    ...mapState({
-    errors: state => state.incidentData.errors
-  })
+      set(value) {
+        this.setIncidentTime(value);
+      }
     },
- methods: {
-     ...mapActions(['setIncidentDate', 'setIncidentTime', 'setIncidentDescription', 'setMainArea', 'setSubArea','setAdditionalLocationInfo', 'fetchMainAreas', 'fetchSubAreas']),
- },
- created() {
-   this.fetchMainAreas()
-   this.fetchSubAreas()
- }
-}
+    incidentDescription: {
+      get() {
+        return this.$store.state.incidentData.incidentDescription;
+      },
+      set(value) {
+        this.setIncidentDescription(value);
+      }
+    },
+    incidentMainArea: {
+      get() {
+        return this.$store.state.incidentData.mainArea;
+      },
+      set(value) {
+        this.setMainArea(value);
+      }
+    },
+    incidentSubArea: {
+      get() {
+        return this.$store.state.incidentData.subArea;
+      },
+      set(value) {
+        this.setSubArea(value);
+      }
+    },
+    additionalLocationInfo: {
+      get() {
+        return this.$store.state.incidentData.additionalLocationInfo;
+      },
+      set(value) {
+        this.setAdditionalLocationInfo(value);
+      }
+    },
+    ...mapGetters(["AllMainAreas", "SubAreas"]),
+    ...mapState({
+      errors: state => state.incidentData.errors
+    })
+  },
+  methods: {
+    ...mapActions([
+      "setIncidentDate",
+      "setIncidentTime",
+      "setIncidentDescription",
+      "setMainArea",
+      "setSubArea",
+      "setAdditionalLocationInfo",
+      "fetchMainAreas",
+      "fetchSubAreas"
+    ])
+  },
+  created() {
+    this.fetchMainAreas();
+    this.fetchSubAreas();
+  }
+};
 </script>
 
 <style scoped>

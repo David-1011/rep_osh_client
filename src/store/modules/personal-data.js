@@ -1,17 +1,21 @@
 import { ACTION_TYPES } from '../../constants/action-types';
 
-const state = {
-  injured: {
-    firstName: '',
-    lastName: '',
-  },
-  witness: {
-    firstName: '',
-    lastName: '',
-    noWitness: false,
-  },
-  errors: [],
+const getDefaultState = () => {
+  return {
+    injured: {
+      firstName: '',
+      lastName: '',
+    },
+    witness: {
+      firstName: '',
+      lastName: '',
+      noWitness: false,
+    },
+    errors: [],
+  };
 };
+
+const state = getDefaultState();
 
 const mutations = {
   [ACTION_TYPES.setFirstName1]: (state, name) =>
@@ -37,6 +41,8 @@ const mutations = {
     }
   },
   [ACTION_TYPES.setErrors]: (state, errors) => (state.errors = errors),
+  [ACTION_TYPES.resetPersonalData]: (state) =>
+    Object.assign(state, getDefaultState()),
 };
 
 const actions = {
@@ -57,6 +63,9 @@ const actions = {
   },
   setPerErrors: ({ commit }, data) => {
     commit(ACTION_TYPES.setErrors, data);
+  },
+  resetPersonalData: ({ commit }) => {
+    commit(ACTION_TYPES.resetPersonalData);
   },
 };
 
