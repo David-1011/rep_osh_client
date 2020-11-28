@@ -24,7 +24,7 @@ const actions = {
       injuryData: injuryData.state,
     };
     axios
-      .post('http://localhost:8080/api/incidents/', params)
+      .post('https://osh-restapi.azurewebsites.net/api/incidents/', params)
       .then(() => {
         store.dispatch('resetPersonalData');
         store.dispatch('resetIncidentData');
