@@ -1,13 +1,15 @@
 <template>
   <div>
     <h3>Home</h3>
+
+    <img src="@/assets/logo.png" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-}
+  name: "Home"
+};
 </script>
 
 <style scoped>
