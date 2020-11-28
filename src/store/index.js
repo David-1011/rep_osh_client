@@ -29,7 +29,7 @@ const actions = {
         store.dispatch('resetPersonalData');
         store.dispatch('resetIncidentData');
         store.dispatch('resetInjuryData');
-        router.push('/');
+        router.push('/about');
       })
       .catch((err) => console.log(err));
   },

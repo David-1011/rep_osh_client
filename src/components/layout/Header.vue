@@ -24,9 +24,6 @@
                 >Verbandsbucheintrag</router-link
               >
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/about">About</router-link>
-            </li>
           </ul>
           <form class="d-flex">
             <input
@@ -47,7 +44,12 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  computed: {
+    dodd: async () => {
+      console.log("hI");
+    }
+  }
 };
 </script>
 

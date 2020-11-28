@@ -1,0 +1,31 @@
+// Make sure the functions come before custom variables
+
+@import '../../node_modules/bootstrap/scss/functions';
+// Our custom variables file
+@import './variables';
+// The bootstrap file that compiles the CSS
+@import './bootstrap';
+
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+.form-label {
+  margin-bottom: 0 !important;
+  margin-top: 0.5rem !important;
+}

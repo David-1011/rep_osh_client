@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Verletzungsbeschreibung</h5>
+      <h5 class="card-title">3. Verletzungsbeschreibung</h5>
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <div>
@@ -70,41 +70,48 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState} from 'vuex'
+import { mapActions, mapGetters, mapState } from "vuex";
 export default {
- name: 'InjuryData',
-    computed: {
-        types: {
-            get() {
-                return this.$store.state.injuryData.types
-            }, set(value) {
-                this.setInjuryTypes(value)
-            }
-        },
-        spots: {
-            get() {
-                return this.$store.state.injuryData.spots
-            }, set(value) {
-                this.setInjurySpots(value)
-            }
-        },
-
-    ...mapGetters(['AllInjurySpots', 'AllInjuryTypes']),
-    ...mapState({
-    errors: state => state.injuryData.errors
-  })
+  name: "InjuryData",
+  computed: {
+    types: {
+      get() {
+        return this.$store.state.injuryData.types;
+      },
+      set(value) {
+        this.setInjuryTypes(value);
+      }
     },
- methods: {
-     ...mapActions(['fetchInjurySpot', 'fetchInjuryType', 'setInjurySpots', 'setInjuryTypes']),
-     test() {
-         console.log(this.$store.state)
-     }
- },
- created() {
-   this.fetchInjurySpot()
-   this.fetchInjuryType()
- }
-}
+    spots: {
+      get() {
+        return this.$store.state.injuryData.spots;
+      },
+      set(value) {
+        this.setInjurySpots(value);
+      }
+    },
+
+    ...mapGetters(["AllInjurySpots", "AllInjuryTypes"]),
+    ...mapState({
+      errors: state => state.injuryData.errors
+    })
+  },
+  methods: {
+    ...mapActions([
+      "fetchInjurySpot",
+      "fetchInjuryType",
+      "setInjurySpots",
+      "setInjuryTypes"
+    ]),
+    test() {
+      console.log(this.$store.state);
+    }
+  },
+  created() {
+    this.fetchInjurySpot();
+    this.fetchInjuryType();
+  }
+};
 </script>
 
 <style>

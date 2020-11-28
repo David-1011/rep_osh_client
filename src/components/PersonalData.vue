@@ -2,8 +2,8 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h5 class="card-title">Persönliche Informationen</h5>
+        <div class="col-12">
+          <h5 class="card-title">1. Persönliche Informationen</h5>
           <h6 class="card-subtitle mb-2 text-muted">
             Angaben zur verletzten Person
           </h6>
@@ -60,7 +60,7 @@
             <label class="form-check-label" for="input5"> Kein Zeuge </label>
           </div>
         </div>
-        <div class="col-sm-12 col-md-6" v-if="errors.length > 0">
+        <div class="col-12" v-if="errors.length > 0">
           <div
             class="alert alert-warning alert-dismissible fade show"
             role="alert"
