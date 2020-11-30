@@ -4,6 +4,7 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">OSH</a>
         <button
+          id="navbar-button"
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
@@ -16,10 +17,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li @click="toggleNavbar" class="nav-item">
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
-            <li class="nav-item">
+            <li @click="toggleNavbar" class="nav-item">
               <router-link class="nav-link" to="/incident"
                 >Verbandsbucheintrag</router-link
               >
@@ -45,9 +46,10 @@
 <script>
 export default {
   name: "Header",
-  computed: {
-    dodd: async () => {
-      console.log("hI");
+  computed: {},
+  methods: {
+    toggleNavbar: async () => {
+      document.getElementById("navbar-button").click();
     }
   }
 };
