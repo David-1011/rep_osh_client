@@ -48,7 +48,7 @@ export default {
   name: "Header",
   computed: {},
   methods: {
-    toggleNavbar: async () => {
+    toggleNavbar: () => {
       document.getElementById("navbar-button").click();
     }
   }

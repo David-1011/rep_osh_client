@@ -21,32 +21,40 @@ const mutations = {
 
 const actions = {
   fetchMainAreas: async ({ commit }) => {
-    axios
-      .get('https://osh-restapi.azurewebsites.net/api/masterdata/mainAreas/')
-      .then((res) => {
-        commit(ACTION_TYPES.fetchAreas, res.data);
-      })
-      .catch((err) => console.log(err.message));
+    if (state.mainAreas.length === 0) {
+      axios
+        .get('https://osh-restapi.azurewebsites.net/api/masterdata/mainAreas/')
+        .then((res) => {
+          commit(ACTION_TYPES.fetchAreas, res.data);
+        })
+        .catch((err) => console.log(err.message));
+    }
   },
   fetchSubAreas: async ({ commit }) => {
-    axios
-      .get('https://osh-restapi.azurewebsites.net/api/masterdata/subAreas/')
-      .then((res) => {
-        commit(ACTION_TYPES.fetchSubAreas, res.data);
-      })
-      .catch((err) => console.log(err.message));
+    if (state.subAreas.length === 0) {
+      axios
+        .get('https://osh-restapi.azurewebsites.net/api/masterdata/subAreas/')
+        .then((res) => {
+          commit(ACTION_TYPES.fetchSubAreas, res.data);
+        })
+        .catch((err) => console.log(err.message));
+    }
   },
   fetchInjurySpot: async ({ commit }) => {
-    const response = await axios.get(
-      'https://osh-restapi.azurewebsites.net/api/masterdata/injurySpots/'
-    );
-    commit(ACTION_TYPES.fetchInjurySpot, response.data);
+    if (state.injurySpots.length === 0) {
+      const response = await axios.get(
+        'https://osh-restapi.azurewebsites.net/api/masterdata/injurySpots/'
+      );
+      commit(ACTION_TYPES.fetchInjurySpot, response.data);
+    }
   },
   fetchInjuryType: async ({ commit }) => {
-    const response = await axios.get(
-      'https://osh-restapi.azurewebsites.net/api/masterdata/injuryTypes/'
-    );
-    commit(ACTION_TYPES.fetchInjuryType, response.data);
+    if (state.injuryTypes.length === 0) {
+      const response = await axios.get(
+        'https://osh-restapi.azurewebsites.net/api/masterdata/injuryTypes/'
+      );
+      commit(ACTION_TYPES.fetchInjuryType, response.data);
+    }
   },
 };
 
