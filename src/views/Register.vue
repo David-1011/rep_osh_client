@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-4">
+      <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img
             id="profile-img"
@@ -14,7 +14,7 @@
                 <label for="email1" class="form-label">E-Mail Adresse</label>
                 <input
                   v-model="user.email"
-                  type="email"
+                  type="text"
                   class="form-control"
                   id="email1"
                   aria-describedby="emailHelp"
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import User from "../models/user";
 
 export default {
@@ -96,7 +97,6 @@ export default {
   },
   computed: {
     loggedIn() {
-      console.log();
       return this.$store.state.authData.status.loggedIn;
     }
   },
@@ -106,31 +106,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["register"]),
+
     handleRegister() {
-      console.log(this.user);
-      console.log(this.password2);
-      console.log(this.user.validatePassword(this.password2));
-      /*
       this.message = "";
       this.submitted = true;
-      this.$validator.validate().then(isValid => {
-        if (isValid) {
-          this.$store.dispatch("auth/register", this.user).then(
-            data => {
-              this.message = data.message;
-              this.successful = true;
-            },
-            error => {
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-              this.successful = false;
-            }
-          );
-        }      
-      });
-      */
+      if (this.password2 === this.user.password) {
+        this.register(this.user);
+      }
     }
   }
 };

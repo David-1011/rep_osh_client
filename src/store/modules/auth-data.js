@@ -1,5 +1,6 @@
 import { ACTION_TYPES } from '../../constants/action-types';
 import AuthService from '../../services/auth.service';
+import router from '../../router';
 
 const getDefaultState = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -45,6 +46,11 @@ const actions = {
     return AuthService.register(user)
       .then((res) => {
         commit(ACTION_TYPES.registerSuccess);
+        if (res.data === 'Success') {
+          router.push('/confirm-register');
+        } else {
+          console.log(res.data);
+        }
         return Promise.resolve(res.data);
       })
       .catch((err) => {

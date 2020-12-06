@@ -36,6 +36,11 @@ const routes = [
     // lazy-loaded
     component: () => import('../views/Profile.vue'),
   },
+  {
+    path: '/confirm-register',
+    name: 'confirm-register',
+    component: () => import('../views/ConfirmRegister.vue'),
+  },
 ];
 
 const router = createRouter({
