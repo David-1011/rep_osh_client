@@ -22,4 +22,9 @@ export const ACTION_TYPES = {
   resetIncidentData: 'resetIncidentData',
   resetInjuryData: 'resetInjuryData',
   resetPersonalData: 'resetPersonalData',
+  loginSuccess: 'loginSuccess',
+  loginFailure: 'loginFailure',
+  logout: 'logout',
+  registerSuccess: 'registerSuccess',
+  registerFailure: 'registerFailure',
 };

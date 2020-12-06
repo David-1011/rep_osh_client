@@ -4,6 +4,7 @@ import masterData from './modules/master-data';
 import personalData from './modules/personal-data';
 import incidentData from './modules/incident-data';
 import injuryData from './modules/injury-data';
+import authData from './modules/auth-data';
 
 import router from '../router';
 
@@ -39,7 +40,7 @@ const store = createStore({
   state,
   mutations,
   actions,
-  modules: { masterData, personalData, incidentData, injuryData },
+  modules: { masterData, personalData, incidentData, injuryData, authData },
 });
 
 export default store;
