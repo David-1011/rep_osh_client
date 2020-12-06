@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/auth/';
+const API_URL = 'https://osh-restapi.azurewebsites.net/api/auth/';
 
 class AuthService {
   login(user) {
