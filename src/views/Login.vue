@@ -69,9 +69,14 @@ export default {
     ...mapActions(["login"]),
     handleLogin() {
       this.loading = true;
-      console.log(this.user);
       if (this.user.email && this.user.password) {
-        this.login(this.user);
+        this.login(this.user)
+          .then(() => {
+            this.$router.push("/profile");
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
       }
     }
   }

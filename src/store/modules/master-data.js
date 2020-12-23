@@ -23,7 +23,7 @@ const actions = {
   fetchMainAreas: async ({ commit }) => {
     if (state.mainAreas.length === 0) {
       axios
-        .get('https://osh-restapi.azurewebsites.net/api/masterdata/mainAreas/')
+        .get('https://osh-restapi.azurewebsites.net/api/mast/mainAreas/')
         .then((res) => {
           commit(ACTION_TYPES.fetchAreas, res.data);
         })
@@ -33,7 +33,7 @@ const actions = {
   fetchSubAreas: async ({ commit }) => {
     if (state.subAreas.length === 0) {
       axios
-        .get('https://osh-restapi.azurewebsites.net/api/masterdata/subAreas/')
+        .get('https://osh-restapi.azurewebsites.net/api/mast/subAreas/')
         .then((res) => {
           commit(ACTION_TYPES.fetchSubAreas, res.data);
         })
@@ -43,7 +43,7 @@ const actions = {
   fetchInjurySpot: async ({ commit }) => {
     if (state.injurySpots.length === 0) {
       const response = await axios.get(
-        'https://osh-restapi.azurewebsites.net/api/masterdata/injurySpots/'
+        'https://osh-restapi.azurewebsites.net/api/mast/injurySpots/'
       );
       commit(ACTION_TYPES.fetchInjurySpot, response.data);
     }
@@ -51,7 +51,7 @@ const actions = {
   fetchInjuryType: async ({ commit }) => {
     if (state.injuryTypes.length === 0) {
       const response = await axios.get(
-        'https://osh-restapi.azurewebsites.net/api/masterdata/injuryTypes/'
+        'https://osh-restapi.azurewebsites.net/api/mast/injuryTypes/'
       );
       commit(ACTION_TYPES.fetchInjuryType, response.data);
     }

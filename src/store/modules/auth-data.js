@@ -14,7 +14,9 @@ const state = getDefaultState();
 
 const mutations = {
   [ACTION_TYPES.loginSuccess]: (state, user) => {
-    (state.status.loggedIn = true), (state.user = user);
+    console.log(user);
+    state.status.loggedIn = true;
+    state.user = user;
   },
   [ACTION_TYPES.loginFailure]: (state) => {
     (state.status.loggedIn = false), (state.user = null);
@@ -28,15 +30,16 @@ const mutations = {
 
 const actions = {
   login({ commit }, user) {
-    return AuthService.login(user)
-      .then((user) => {
+    return AuthService.login(user).then(
+      (user) => {
         commit(ACTION_TYPES.loginSuccess, user);
         return Promise.resolve(user);
-      })
-      .catch((err) => {
+      },
+      (error) => {
         commit(ACTION_TYPES.loginFailure);
-        return Promise.reject(err);
-      });
+        return Promise.reject(error);
+      }
+    );
   },
   logout({ commit }) {
     AuthService.logout();

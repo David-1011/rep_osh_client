@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://osh-restapi.azurewebsites.net/api/auth/';
+//const API_URL = 'http://localhost:3000/api/auth/';
 
 class AuthService {
   login(user) {
@@ -14,8 +15,7 @@ class AuthService {
           localStorage.setItem('user', JSON.stringify(res.data.accessToken));
         }
         return res.data;
-      })
-      .catch((err) => console.log(err));
+      });
   }
   logout() {
     localStorage.removeItem('user');
