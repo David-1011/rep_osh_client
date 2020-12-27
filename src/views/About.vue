@@ -11,7 +11,7 @@
             <p class="card-text">
               Ihre Daten wurden erfolgreich übertragen. Wir wünschen Ihnen gute
               Besserung und bleiben Sie gesund. Bei Fragen oder Beschwerden
-              wenden Sie sich direkt an Ihren direkten Vorgesetzten.
+              wenden Sie sich an Ihren direkten Vorgesetzten.
             </p>
             <router-link class="card-link" to="/">Home</router-link>
           </div>

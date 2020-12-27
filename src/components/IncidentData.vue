@@ -1,24 +1,24 @@
 <template>
   <div class="card h-100">
+    <div class="card-header text-white bg-success">2. Unfalldaten</div>
     <div class="card-body">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h5 class="card-title">2. Unfalldaten</h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
+      <div class="d-flex flex-column flex-md-row">
+        <div class="col d-flex flex-column me-md-3">
           <IncidentDateInput />
           <IncidentTimeInput />
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col d-flex flex-column ms-md-3">
           <MainAreaSelector />
           <SubAreaSelector v-if="incidentMainArea !== ''" />
           <IncidentAdditionalLocationInfo v-if="incidentMainArea !== ''" />
         </div>
-        <div class="col-12">
-          <IncidentDescriptionTextArea />
-        </div>
+      </div>
+      <IncidentDescriptionTextArea />
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6"></div>
+        <div class="col-sm-12 col-md-6"></div>
+        <div class="col-12"></div>
       </div>
     </div>
   </div>

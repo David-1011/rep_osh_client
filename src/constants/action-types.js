@@ -13,8 +13,6 @@ export const ACTION_TYPES = {
   setInjurySpots: 'setInjurySpots',
   setInjuryTypes: 'setInjuryTypes',
   setErrors: 'setErrors',
-  setIncErrors: 'setIncErrors',
-  setInjErrors: 'setInjErrors',
   fetchAreas: 'fetchAreas',
   fetchSubAreas: 'fetchSubAreas',
   fetchInjurySpot: 'fetchInjurySpot',

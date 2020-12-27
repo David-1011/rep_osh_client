@@ -5,13 +5,14 @@ const getDefaultState = () => {
     injured: {
       firstName: '',
       lastName: '',
+      type: 'Injured',
     },
     witness: {
       firstName: '',
       lastName: '',
+      type: 'Witness',
       noWitness: false,
     },
-    errors: [],
   };
 };
 
@@ -40,7 +41,6 @@ const mutations = {
       state.witness.lastName = '';
     }
   },
-  [ACTION_TYPES.setErrors]: (state, errors) => (state.errors = errors),
   [ACTION_TYPES.resetPersonalData]: (state) =>
     Object.assign(state, getDefaultState()),
 };
@@ -60,9 +60,6 @@ const actions = {
   },
   setNoWitness: ({ commit }, value) => {
     commit(ACTION_TYPES.setNoWitness, value);
-  },
-  setPerErrors: ({ commit }, data) => {
-    commit(ACTION_TYPES.setErrors, data);
   },
   resetPersonalData: ({ commit }) => {
     commit(ACTION_TYPES.resetPersonalData);

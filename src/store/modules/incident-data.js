@@ -9,7 +9,6 @@ const getDefaultState = () => {
     mainArea: '',
     subArea: '',
     additionalLocationInfo: '',
-    errors: [],
   };
 };
 
@@ -28,7 +27,6 @@ const mutations = {
   [ACTION_TYPES.setSubArea]: (state, subArea) => (state.subArea = subArea),
   [ACTION_TYPES.setAdditionalLocationInfo]: (state, info) =>
     (state.additionalLocationInfo = info),
-  [ACTION_TYPES.setIncErrors]: (state, errors) => (state.errors = errors),
   [ACTION_TYPES.resetIncidentData]: (state) =>
     Object.assign(state, getDefaultState()),
 };
@@ -51,9 +49,6 @@ const actions = {
   },
   setAdditionalLocationInfo: ({ commit }, value) => {
     commit(ACTION_TYPES.setAdditionalLocationInfo, value);
-  },
-  setIncErrors: ({ commit }, data) => {
-    commit(ACTION_TYPES.setIncErrors, data);
   },
   resetIncidentData: ({ commit }) => {
     commit(ACTION_TYPES.resetIncidentData);

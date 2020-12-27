@@ -1,7 +1,7 @@
 <template>
   <Header />
-  <main>
-    <router-view class="mt-3" />
+  <main class="bg-light">
+    <router-view class="p-1 p-md-3" />
   </main>
   <Footer />
 </template>

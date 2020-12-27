@@ -62,7 +62,7 @@ const getters = {
   AllMainAreas: (state) => state.mainAreas,
   SubAreas: (state) => (picked, mainAreas) => {
     const filter = picked === '' ? mainAreas : picked;
-    return state.subAreas.filter((sub) => sub.mainAreaParentId === filter);
+    return state.subAreas.filter((sub) => sub.masMainAreaId === filter);
   },
   AllInjurySpots: (state) => state.injurySpots,
   AllInjuryTypes: (state) => state.injuryTypes,
