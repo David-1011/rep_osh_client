@@ -6,6 +6,7 @@
       id="subArea1"
       class="form-select"
       :class="{ 'is-valid': valid1 == 1, 'is-invalid': valid1 == -1 }"
+      :disabled="incidentMainArea.length == 0"
     >
       <option selected disabled value="">Öffnen</option>
       <option
@@ -26,10 +27,8 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "SubAreaSelector",
   computed: {
-    incidentMainArea: {
-      get() {
-        return this.$store.state.incidentData.mainArea;
-      }
+    incidentMainArea() {
+      return this.$store.state.incidentData.mainArea;
     },
     incidentSubArea: {
       get() {

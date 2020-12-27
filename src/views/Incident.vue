@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="card bg-success text-white">
           <div class="card-body">
-            <h3>Verbandsbucheintrag</h3>
+            <h3 class="mb-0">Verbandsbucheintrag</h3>
           </div>
         </div>
       </div>

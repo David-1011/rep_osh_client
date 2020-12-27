@@ -8,6 +8,7 @@
       autocomplete="off"
       placeholder="Optional"
       v-model="additionalLocationInfo"
+      :disabled="incidentMainArea.length == 0"
     />
   </div>
 </template>
@@ -17,6 +18,9 @@ import { mapActions } from "vuex";
 export default {
   name: "IncidentAddtionalLocationInfoInput",
   computed: {
+    incidentMainArea() {
+      return this.$store.state.incidentData.mainArea;
+    },
     additionalLocationInfo: {
       get() {
         return this.$store.state.incidentData.additionalLocationInfo;

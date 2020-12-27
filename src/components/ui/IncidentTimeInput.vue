@@ -18,7 +18,7 @@ export default {
   name: "IncidentTimeInput",
   data() {
     return {
-      maxTime: moment().format("HH:mm")
+      maxTime: moment().format("HH:mm:ss")
     };
   },
   computed: {

@@ -14,7 +14,6 @@ const state = getDefaultState();
 
 const mutations = {
   [ACTION_TYPES.loginSuccess]: (state, user) => {
-    console.log(user);
     state.status.loggedIn = true;
     state.user = user;
   },

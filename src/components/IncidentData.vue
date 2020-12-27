@@ -9,8 +9,8 @@
         </div>
         <div class="col d-flex flex-column ms-md-3">
           <MainAreaSelector />
-          <SubAreaSelector v-if="incidentMainArea !== ''" />
-          <IncidentAdditionalLocationInfo v-if="incidentMainArea !== ''" />
+          <SubAreaSelector />
+          <IncidentAdditionalLocationInfo />
         </div>
       </div>
       <IncidentDescriptionTextArea />
