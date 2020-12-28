@@ -5,6 +5,7 @@ import personalData from './modules/personal-data';
 import incidentData from './modules/incident-data';
 import injuryData from './modules/injury-data';
 import authData from './modules/auth-data';
+import adminData from './modules/admin-data';
 import { ACTION_TYPES } from '../constants/action-types';
 
 import router from '../router';
@@ -69,7 +70,14 @@ const store = createStore({
   state,
   mutations,
   actions,
-  modules: { masterData, personalData, incidentData, injuryData, authData },
+  modules: {
+    masterData,
+    personalData,
+    incidentData,
+    injuryData,
+    authData,
+    adminData,
+  },
 });
 
 export default store;

@@ -17,6 +17,7 @@ export const ACTION_TYPES = {
   fetchSubAreas: 'fetchSubAreas',
   fetchInjurySpot: 'fetchInjurySpot',
   fetchInjuryType: 'fetchInjuryType',
+  fetchIncidents: 'fetchIncidents',
   resetIncidentData: 'resetIncidentData',
   resetInjuryData: 'resetInjuryData',
   resetPersonalData: 'resetPersonalData',

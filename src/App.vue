@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <main class="bg-light">
+  <main>
     <router-view class="p-1 p-md-3" />
   </main>
   <Footer />

@@ -27,6 +27,18 @@ const routes = [
     component: Incident,
   },
   {
+    path: '/administration',
+    name: 'Administration',
+    // lazy-loaded
+    component: () => import('../views/Administration.vue'),
+  },
+  {
+    path: '/editIncident/:id',
+    name: 'EditIncident',
+    // lazy-loaded
+    component: () => import('../views/EditIncident.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/About.vue'),

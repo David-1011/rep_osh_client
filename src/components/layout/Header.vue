@@ -17,12 +17,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li @click="toggleNavbar" class="nav-item">
+            <li class="nav-item">
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
-            <li @click="toggleNavbar" class="nav-item">
+            <li class="nav-item">
               <router-link class="nav-link" to="/incident"
                 >Verbandsbucheintrag</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/administration"
+                >Datenverwaltung</router-link
               >
             </li>
           </ul>
@@ -52,11 +57,7 @@ export default {
       return this.$store.state.authData.status.loggedIn;
     }
   },
-  methods: {
-    toggleNavbar: () => {
-      document.getElementById("navbar-button").click();
-    }
-  }
+  methods: {}
 };
 </script>
 

@@ -3,10 +3,16 @@ import App from './App.vue';
 import router from './router';
 import store from './store/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faWindowClose,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faUser);
+library.add(faEdit);
+library.add(faWindowClose);
+library.add(faSave);
 
 createApp(App)
   .use(router)
