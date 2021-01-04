@@ -6,6 +6,7 @@ import incidentData from './modules/incident-data';
 import injuryData from './modules/injury-data';
 import authData from './modules/auth-data';
 import adminData from './modules/admin-data';
+import moderatorData from './modules/moderator-data';
 import { ACTION_TYPES } from '../constants/action-types';
 
 import router from '../router';
@@ -28,17 +29,8 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setErrors]: (state, validation) => {
-    console.log(validation);
-    state.validation.injuredValid1 = validation.injuredValid1;
-    state.validation.injuredValid2 = validation.injuredValid2;
-    state.validation.witnessValid1 = validation.witnessValid1;
-    state.validation.mainAreaValid = validation.mainAreaValid;
-    state.validation.subAreaValid = validation.subAreaValid;
-    state.validation.descriptionValid = validation.descriptionValid;
-    state.validation.spotsValid = validation.spotsValid;
-    state.validation.typesValid = validation.typesValid;
-  },
+  [ACTION_TYPES.setErrors]: (state, validation) =>
+    (state.validation = validation),
 };
 
 const actions = {
@@ -58,7 +50,7 @@ const actions = {
     if (response.data.msg == 'Validation failed') {
       commit(ACTION_TYPES.setErrors, response.data.validation);
     } else {
-      router.push('/about');
+      router.push('/message/1');
       store.dispatch('resetPersonalData');
       store.dispatch('resetIncidentData');
       store.dispatch('resetInjuryData');
@@ -76,6 +68,7 @@ const store = createStore({
     incidentData,
     injuryData,
     authData,
+    moderatorData,
     adminData,
   },
 });

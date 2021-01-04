@@ -7,15 +7,21 @@ import {
   faEdit,
   faWindowClose,
   faSave,
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+} from '@fortawesome/vue-fontawesome';
 
 library.add(faEdit);
 library.add(faWindowClose);
 library.add(faSave);
+library.add(faSpinner);
 
 createApp(App)
   .use(router)
   .use(store)
   .component('font-awesome-icon', FontAwesomeIcon)
+  .component('font-awesome-layers', FontAwesomeLayers)
   .mount('#app');

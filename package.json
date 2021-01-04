@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta1",
     "core-js": "^3.8.1",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "vee-validate": "^4.1.2",
     "vue": "^3.0.4",

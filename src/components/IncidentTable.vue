@@ -15,8 +15,8 @@
       <tr v-for="entry in incidents" :key="entry.id">
         <td>{{ type(entry.type) }}</td>
         <td class="text-end">{{ createdAt(entry.createdAt) }}</td>
-        <td>{{ entry.mainArea.mainAreaText }}</td>
-        <td>{{ entry.subArea.subAreaText }}</td>
+        <td>{{ entry.masMainArea.mainAreaText }}</td>
+        <td>{{ entry.masSubArea.subAreaText }}</td>
         <td>{{ entry.oshCategorie }}</td>
         <td>offen</td>
         <td class="text-center">
@@ -27,7 +27,6 @@
       </tr>
     </tbody>
   </table>
-
   {{ incidents }}
 </template>
 
@@ -38,7 +37,7 @@ export default {
   name: "IncidentTable",
   computed: {
     incidents() {
-      return this.$store.state.adminData.incidents;
+      return this.$store.state.moderatorData.incidents;
     }
   },
   methods: {

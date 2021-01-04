@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleLogin" style="width: 300px">
+  <form @submit.prevent="handleLogin" style="min-width: 300px">
     <div class="mb-3">
       <label for="email1" class="form-label">E-Mail Adresse</label>
       <input
@@ -19,7 +19,7 @@
         type="password"
         class="form-control"
         id="password1"
-        autocomplete="new-password"
+        autocomplete="current-password"
         required
       />
     </div>
@@ -44,9 +44,13 @@ export default {
     handleLogin() {
       this.loading = true;
       if (this.user.email && this.user.password) {
-        this.login(this.user).catch(err => {
-          console.log(err.message);
-        });
+        this.login(this.user)
+          .then(() => {
+            this.$router.push(this.$route.query.redirect || "/");
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
       }
     }
   }

@@ -1,16 +1,20 @@
 import { ACTION_TYPES } from '../../constants/action-types';
 
-const defaultState = {
-  spots: [],
-  types: [],
+const getDefaultState = () => {
+  return {
+    spots: [],
+    types: [],
+  };
 };
 
-const state = defaultState;
+const state = getDefaultState();
 
 const mutations = {
   [ACTION_TYPES.setInjurySpots]: (state, value) => (state.spots = value),
   [ACTION_TYPES.setInjuryTypes]: (state, value) => (state.types = value),
-  [ACTION_TYPES.resetInjuryData]: (state) => Object.assign(state, defaultState),
+  [ACTION_TYPES.resetInjuryData]: (state) => {
+    Object.assign(state, getDefaultState());
+  },
 };
 
 const actions = {

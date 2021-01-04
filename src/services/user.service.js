@@ -8,11 +8,5 @@ class UserService {
   getUserBoard() {
     return axios.get(API_URL, { headers: authHeader() });
   }
-  getIncidents() {
-    return axios.get(
-      'https://osh-restapi.azurewebsites.net/api/event/incidents',
-      { headers: authHeader() }
-    );
-  }
 }
 export default new UserService();

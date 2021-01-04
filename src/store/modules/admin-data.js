@@ -1,9 +1,12 @@
 import { ACTION_TYPES } from '../../constants/action-types';
-import UserService from '../../services/user.service';
+import AdminService from '../../services/admin.service';
 
 const getDefaultState = () => {
   const initialState = {
-    incidents: [],
+    incident: {
+      eveEventPeople: [],
+    },
+    loading: [],
   };
   return initialState;
 };
@@ -11,19 +14,39 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.fetchIncidents]: (state, value) => (state.incidents = value),
+  [ACTION_TYPES.setIncident]: (state, incident) => (state.incident = incident),
+
+  [ACTION_TYPES.setLoad]: (state, value) => {
+    const i = state.loading.findIndex((x) => x.id == value.id);
+    if (i != -1) {
+      state.loading[i].loading = value.status;
+    } else {
+      state.loading.push({ id: value.id, loading: value.status });
+    }
+  },
+
+  [ACTION_TYPES.setPersonData]: (state, value) => {
+    const i = state.incident.eveEventPeople.findIndex((x) => x.id == value.id);
+    state.incident.eveEventPeople[i].firstName = value.firstName;
+    state.incident.eveEventPeople[i].lastName = value.lastName;
+    console.log(state);
+  },
 };
 
 const actions = {
-  fetchIncidents: async ({ commit }) => {
-    return UserService.getIncidents().then(
-      (incidents) => {
-        commit(ACTION_TYPES.fetchIncidents, incidents.data);
+  setIncident: async ({ commit }, incident) => {
+    commit(ACTION_TYPES.setIncident, incident);
+  },
+
+  setPersonData: async ({ commit }, person) => {
+    AdminService.patchPerson(person).then(
+      () => {
+        commit(ACTION_TYPES.setPersonData, person);
         return Promise.resolve('Success');
       },
-      (error) => {
-        console.log(error);
-        return Promise.reject(error);
+      (err) => {
+        console.log(err);
+        return Promise.reject(err);
       }
     );
   },
@@ -31,14 +54,16 @@ const actions = {
 
 const getters = {
   PersonDataById: (state) => (incId, perId) => {
-    const incident = state.incidents.find((inc) => inc.id === incId);
-    const person = incident.people.find((per) => per.id === perId);
+    const person = state.incident.eveEventPeople.find(
+      (per) => per.id === perId
+    );
     return person;
   },
-  PeopleIds: (state) => (id) => {
-    const incident = state.incidents.find((inc) => inc.id === id);
-    const ids = incident.people.map((peo) => peo.id);
-    return ids;
+  LoadingById: (state) => (id) => {
+    return state.loading.find((loa) => loa.id === id);
+  },
+  getPeopleIds: (state) => {
+    return state.incident.eveEventPeople.map((peo) => peo.id);
   },
 };
 

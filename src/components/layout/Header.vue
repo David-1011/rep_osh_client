@@ -31,7 +31,7 @@
               >
             </li>
           </ul>
-          <div v-if="!loggedIn">
+          <div v-if="!loggedIn && displayLoginForm">
             <HeaderLogin />
           </div>
           <div v-if="loggedIn">
@@ -55,6 +55,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.authData.status.loggedIn;
+    },
+    displayLoginForm() {
+      return this.$route.name == "Login" ? false : true;
     }
   },
   methods: {}
