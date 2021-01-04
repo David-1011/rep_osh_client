@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../../constants/action-types';
+import { AT } from '../../constants/action-types';
 
 const getDefaultState = () => {
   return {
@@ -10,22 +10,22 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setInjurySpots]: (state, value) => (state.spots = value),
-  [ACTION_TYPES.setInjuryTypes]: (state, value) => (state.types = value),
-  [ACTION_TYPES.resetInjuryData]: (state) => {
+  [AT.setInjurySpots]: (state, value) => (state.spots = value),
+  [AT.setInjuryTypes]: (state, value) => (state.types = value),
+  [AT.resetInjuryData]: (state) => {
     Object.assign(state, getDefaultState());
   },
 };
 
 const actions = {
   setInjurySpots: ({ commit }, e) => {
-    commit(ACTION_TYPES.setInjurySpots, e);
+    commit(AT.setInjurySpots, e);
   },
   setInjuryTypes: ({ commit }, e) => {
-    commit(ACTION_TYPES.setInjuryTypes, e);
+    commit(AT.setInjuryTypes, e);
   },
   resetInjuryData: ({ commit }) => {
-    commit(ACTION_TYPES.resetInjuryData);
+    commit(AT.resetInjuryData);
   },
 };
 

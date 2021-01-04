@@ -1,8 +1,15 @@
-export const ACTION_TYPES = {
+export const AT = {
+  authError: 'auth_error',
+  authRequest: 'auth_request',
+  authSuccess: 'auth_success',
   fetchAreas: 'fetchAreas',
-  fetchIncidents: 'fetchIncidents',
   fetchInjurySpot: 'fetchInjurySpot',
   fetchInjuryType: 'fetchInjuryType',
+
+  inciError: 'inci_Error',
+  inciRequest: 'inci_Request',
+  inciSuccess: 'inciSuccess',
+
   fetchSubAreas: 'fetchSubAreas',
   loginFailure: 'loginFailure',
   loginSuccess: 'loginSuccess',

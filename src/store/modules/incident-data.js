@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../../constants/action-types';
+import { AT } from '../../constants/action-types';
 import moment from 'moment';
 
 const getDefaultState = () => {
@@ -15,43 +15,42 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setIncidentDate]: (state, date) => (state.incidentDate = date),
-  [ACTION_TYPES.setIncidentTime]: (state, time) => (state.incidentTime = time),
-  [ACTION_TYPES.setIncidentDescription]: (state, description) =>
+  [AT.setIncidentDate]: (state, date) => (state.incidentDate = date),
+  [AT.setIncidentTime]: (state, time) => (state.incidentTime = time),
+  [AT.setIncidentDescription]: (state, description) =>
     (state.incidentDescription = description),
-  [ACTION_TYPES.setMainArea]: (state, mainArea) => {
+  [AT.setMainArea]: (state, mainArea) => {
     state.mainArea = mainArea;
     state.subArea = '';
     state.additionalLocationInfo = '';
   },
-  [ACTION_TYPES.setSubArea]: (state, subArea) => (state.subArea = subArea),
-  [ACTION_TYPES.setAdditionalLocationInfo]: (state, info) =>
+  [AT.setSubArea]: (state, subArea) => (state.subArea = subArea),
+  [AT.setAdditionalLocationInfo]: (state, info) =>
     (state.additionalLocationInfo = info),
-  [ACTION_TYPES.resetIncidentData]: (state) =>
-    Object.assign(state, getDefaultState()),
+  [AT.resetIncidentData]: (state) => Object.assign(state, getDefaultState()),
 };
 
 const actions = {
   setIncidentDate: ({ commit }, value) => {
-    commit(ACTION_TYPES.setIncidentDate, value);
+    commit(AT.setIncidentDate, value);
   },
   setIncidentTime: ({ commit }, value) => {
-    commit(ACTION_TYPES.setIncidentTime, value);
+    commit(AT.setIncidentTime, value);
   },
   setIncidentDescription: ({ commit }, value) => {
-    commit(ACTION_TYPES.setIncidentDescription, value);
+    commit(AT.setIncidentDescription, value);
   },
   setMainArea: ({ commit }, value) => {
-    commit(ACTION_TYPES.setMainArea, value);
+    commit(AT.setMainArea, value);
   },
   setSubArea: ({ commit }, value) => {
-    commit(ACTION_TYPES.setSubArea, value);
+    commit(AT.setSubArea, value);
   },
   setAdditionalLocationInfo: ({ commit }, value) => {
-    commit(ACTION_TYPES.setAdditionalLocationInfo, value);
+    commit(AT.setAdditionalLocationInfo, value);
   },
   resetIncidentData: ({ commit }) => {
-    commit(ACTION_TYPES.resetIncidentData);
+    commit(AT.resetIncidentData);
   },
 };
 

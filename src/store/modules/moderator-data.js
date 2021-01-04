@@ -1,8 +1,12 @@
-import { ACTION_TYPES } from '../../constants/action-types';
-import ModeratorService from '../../services/moderator.service';
+import axios from 'axios';
+import authHeader from '../../services/auth-header';
+
+import { AT } from '../../constants/action-types';
+import { API_URL } from '../../constants/api';
 
 const getDefaultState = () => {
   const initialState = {
+    status: '',
     incidents: [],
   };
   return initialState;
@@ -11,21 +15,32 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.fetchIncidents]: (state, value) => (state.incidents = value),
+  [AT.inciRequest](state) {
+    state.status = 'loading';
+  },
+  [AT.inciSuccess](state, value) {
+    (state.incidents = value), (state.status = 'success');
+  },
+  [AT.inciError](state) {
+    state.status = 'error';
+  },
 };
 
 const actions = {
-  fetchIncidents: async ({ commit }) => {
-    return ModeratorService.getIncidents().then(
-      (incidents) => {
-        commit(ACTION_TYPES.fetchIncidents, incidents.data);
-        return Promise.resolve('Success');
-      },
-      (error) => {
-        console.log(error);
-        return Promise.reject(error);
-      }
-    );
+  fetchIncidents: ({ commit }) => {
+    return new Promise((resolve, reject) => {
+      commit(AT.inciRequest);
+      axios
+        .get(`${API_URL}/event/incidents`, { headers: authHeader() })
+        .then((resp) => {
+          commit(AT.inciSuccess, resp.data);
+          resolve(resp);
+        })
+        .catch((err) => {
+          commit(AT.inciError);
+          reject(err);
+        });
+    });
   },
 };
 

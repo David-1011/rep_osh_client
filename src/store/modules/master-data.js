@@ -1,5 +1,7 @@
-import { ACTION_TYPES } from '../../constants/action-types';
 import axios from 'axios';
+
+import { AT } from '../../constants/action-types';
+import { API_URL } from '../../constants/api';
 
 const state = {
   mainAreas: [],
@@ -9,13 +11,11 @@ const state = {
 };
 
 const mutations = {
-  [ACTION_TYPES.fetchAreas]: (state, mainAreas) =>
-    (state.mainAreas = mainAreas),
-  [ACTION_TYPES.fetchSubAreas]: (state, subAreas) =>
-    (state.subAreas = subAreas),
-  [ACTION_TYPES.fetchInjurySpot]: (state, injurySpots) =>
+  [AT.fetchAreas]: (state, mainAreas) => (state.mainAreas = mainAreas),
+  [AT.fetchSubAreas]: (state, subAreas) => (state.subAreas = subAreas),
+  [AT.fetchInjurySpot]: (state, injurySpots) =>
     (state.injurySpots = injurySpots),
-  [ACTION_TYPES.fetchInjuryType]: (state, injuryTypes) =>
+  [AT.fetchInjuryType]: (state, injuryTypes) =>
     (state.injuryTypes = injuryTypes),
 };
 
@@ -23,9 +23,9 @@ const actions = {
   fetchMainAreas: async ({ commit }) => {
     if (state.mainAreas.length === 0) {
       axios
-        .get('https://osh-restapi.azurewebsites.net/api/mast/mainAreas/')
+        .get(`${API_URL}/mast/mainAreas/`)
         .then((res) => {
-          commit(ACTION_TYPES.fetchAreas, res.data);
+          commit(AT.fetchAreas, res.data);
         })
         .catch((err) => console.log(err.message));
     }
@@ -33,27 +33,23 @@ const actions = {
   fetchSubAreas: async ({ commit }) => {
     if (state.subAreas.length === 0) {
       axios
-        .get('https://osh-restapi.azurewebsites.net/api/mast/subAreas/')
+        .get(`${API_URL}/mast/subAreas/`)
         .then((res) => {
-          commit(ACTION_TYPES.fetchSubAreas, res.data);
+          commit(AT.fetchSubAreas, res.data);
         })
         .catch((err) => console.log(err.message));
     }
   },
   fetchInjurySpot: async ({ commit }) => {
     if (state.injurySpots.length === 0) {
-      const response = await axios.get(
-        'https://osh-restapi.azurewebsites.net/api/mast/injurySpots/'
-      );
-      commit(ACTION_TYPES.fetchInjurySpot, response.data);
+      const response = await axios.get(`${API_URL}/mast/injurySpots/`);
+      commit(AT.fetchInjurySpot, response.data);
     }
   },
   fetchInjuryType: async ({ commit }) => {
     if (state.injuryTypes.length === 0) {
-      const response = await axios.get(
-        'https://osh-restapi.azurewebsites.net/api/mast/injuryTypes/'
-      );
-      commit(ACTION_TYPES.fetchInjuryType, response.data);
+      const response = await axios.get(`${API_URL}/mast/injuryTypes/`);
+      commit(AT.fetchInjuryType, response.data);
     }
   },
 };

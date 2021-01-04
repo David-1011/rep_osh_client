@@ -8,33 +8,50 @@
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-bs-target="#navbar1"
+          aria-controls="navbar1"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbar1">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
+              <router-link
+                class="nav-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar1"
+                @click="goToHome"
+                to="/"
+                >Home</router-link
+              >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/incident"
+              <router-link
+                class="nav-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar1"
+                @click="goToIncident"
+                to="/incident"
                 >Verbandsbucheintrag</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/administration"
+              <router-link
+                class="nav-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar1"
+                @click="goToAdministration"
+                to="/administration"
                 >Datenverwaltung</router-link
               >
             </li>
           </ul>
-          <div v-if="!loggedIn && displayLoginForm">
+          <div v-if="!isLoggedIn && displayLoginForm">
             <HeaderLogin />
           </div>
-          <div v-if="loggedIn">
+          <div v-if="isLoggedIn">
             <HeaderLogout />
           </div>
         </div>
@@ -53,14 +70,24 @@ export default {
     HeaderLogout
   },
   computed: {
-    loggedIn() {
-      return this.$store.state.authData.status.loggedIn;
+    isLoggedIn() {
+      return !!this.$store.state.authData.token;
     },
     displayLoginForm() {
       return this.$route.name == "Login" ? false : true;
     }
   },
-  methods: {}
+  methods: {
+    goToHome() {
+      this.$router.push("/");
+    },
+    goToIncident() {
+      this.$router.push("/incident");
+    },
+    goToAdministration() {
+      this.$router.push("/administration");
+    }
+  }
 };
 </script>
 

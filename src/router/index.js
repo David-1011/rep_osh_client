@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import Incident from '../views/Incident.vue';
-import AuthService from '../services/auth.service';
+import store from '../store/index.js';
+
 const routes = [
   {
     // Public
@@ -91,7 +92,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!to.meta.allowAnonymous && !AuthService.isLoggedIn()) {
+  if (!to.meta.allowAnonymous && !store.getters.isLoggedIn) {
     next({
       path: '/login',
       query: { redirect: to.fullPath },

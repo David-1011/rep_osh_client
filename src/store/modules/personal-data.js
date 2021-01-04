@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../../constants/action-types';
+import { AT } from '../../constants/action-types';
 
 const getDefaultState = () => {
   return {
@@ -19,50 +19,48 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setFirstName1]: (state, name) =>
-    (state.injured.firstName = name),
-  [ACTION_TYPES.setLastName1]: (state, name) => (state.injured.lastName = name),
-  [ACTION_TYPES.setFirstName2]: (state, name) => {
+  [AT.setFirstName1]: (state, name) => (state.injured.firstName = name),
+  [AT.setLastName1]: (state, name) => (state.injured.lastName = name),
+  [AT.setFirstName2]: (state, name) => {
     state.witness.firstName = name;
     if (state.witness.lastName.length + state.witness.firstName.length > 0) {
       state.witness.noWitness = false;
     }
   },
-  [ACTION_TYPES.setLastName2]: (state, name) => {
+  [AT.setLastName2]: (state, name) => {
     state.witness.lastName = name;
     if (state.witness.lastName.length + state.witness.firstName.length > 0) {
       state.witness.noWitness = false;
     }
   },
-  [ACTION_TYPES.setNoWitness]: (state, noWitness) => {
+  [AT.setNoWitness]: (state, noWitness) => {
     state.witness.noWitness = noWitness;
     if (state.witness.noWitness) {
       state.witness.firstName = '';
       state.witness.lastName = '';
     }
   },
-  [ACTION_TYPES.resetPersonalData]: (state) =>
-    Object.assign(state, getDefaultState()),
+  [AT.resetPersonalData]: (state) => Object.assign(state, getDefaultState()),
 };
 
 const actions = {
   setFirstName1: ({ commit }, value) => {
-    commit(ACTION_TYPES.setFirstName1, value);
+    commit(AT.setFirstName1, value);
   },
   setLastName1: ({ commit }, value) => {
-    commit(ACTION_TYPES.setLastName1, value);
+    commit(AT.setLastName1, value);
   },
   setFirstName2: ({ commit }, value) => {
-    commit(ACTION_TYPES.setFirstName2, value);
+    commit(AT.setFirstName2, value);
   },
   setLastName2: ({ commit }, value) => {
-    commit(ACTION_TYPES.setLastName2, value);
+    commit(AT.setLastName2, value);
   },
   setNoWitness: ({ commit }, value) => {
-    commit(ACTION_TYPES.setNoWitness, value);
+    commit(AT.setNoWitness, value);
   },
   resetPersonalData: ({ commit }) => {
-    commit(ACTION_TYPES.resetPersonalData);
+    commit(AT.resetPersonalData);
   },
 };
 

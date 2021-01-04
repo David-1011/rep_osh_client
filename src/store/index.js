@@ -7,7 +7,7 @@ import injuryData from './modules/injury-data';
 import authData from './modules/auth-data';
 import adminData from './modules/admin-data';
 import moderatorData from './modules/moderator-data';
-import { ACTION_TYPES } from '../constants/action-types';
+import { AT } from '../constants/action-types';
 
 import router from '../router';
 
@@ -29,8 +29,7 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setErrors]: (state, validation) =>
-    (state.validation = validation),
+  [AT.setErrors]: (state, validation) => (state.validation = validation),
 };
 
 const actions = {
@@ -48,7 +47,7 @@ const actions = {
     );
 
     if (response.data.msg == 'Validation failed') {
-      commit(ACTION_TYPES.setErrors, response.data.validation);
+      commit(AT.setErrors, response.data.validation);
     } else {
       router.push('/message/1');
       store.dispatch('resetPersonalData');

@@ -82,13 +82,17 @@
 
 <script>
 import { mapActions } from "vuex";
-import User from "../models/user";
 
 export default {
   name: "Register",
   data() {
     return {
-      user: new User("", "", "", ""),
+      user: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: ""
+      },
       submitted: false,
       successful: false,
       message: "",

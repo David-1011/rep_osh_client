@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../../constants/action-types';
+import { AT } from '../../constants/action-types';
 import AdminService from '../../services/admin.service';
 
 const getDefaultState = () => {
@@ -14,9 +14,9 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const mutations = {
-  [ACTION_TYPES.setIncident]: (state, incident) => (state.incident = incident),
+  [AT.setIncident]: (state, incident) => (state.incident = incident),
 
-  [ACTION_TYPES.setLoad]: (state, value) => {
+  [AT.setLoad]: (state, value) => {
     const i = state.loading.findIndex((x) => x.id == value.id);
     if (i != -1) {
       state.loading[i].loading = value.status;
@@ -25,7 +25,7 @@ const mutations = {
     }
   },
 
-  [ACTION_TYPES.setPersonData]: (state, value) => {
+  [AT.setPersonData]: (state, value) => {
     const i = state.incident.eveEventPeople.findIndex((x) => x.id == value.id);
     state.incident.eveEventPeople[i].firstName = value.firstName;
     state.incident.eveEventPeople[i].lastName = value.lastName;
@@ -35,13 +35,13 @@ const mutations = {
 
 const actions = {
   setIncident: async ({ commit }, incident) => {
-    commit(ACTION_TYPES.setIncident, incident);
+    commit(AT.setIncident, incident);
   },
 
   setPersonData: async ({ commit }, person) => {
     AdminService.patchPerson(person).then(
       () => {
-        commit(ACTION_TYPES.setPersonData, person);
+        commit(AT.setPersonData, person);
         return Promise.resolve('Success');
       },
       (err) => {

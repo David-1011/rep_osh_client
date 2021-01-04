@@ -3,7 +3,7 @@
     <div class="mb-3">
       <label for="email1" class="form-label">E-Mail Adresse</label>
       <input
-        v-model="user.email"
+        v-model="email"
         type="email"
         class="form-control"
         id="email1"
@@ -15,7 +15,7 @@
     <div class="mb-3">
       <label for="password1" class="form-label">Passwort</label>
       <input
-        v-model="user.password"
+        v-model="password"
         type="password"
         class="form-control"
         id="password1"
@@ -28,30 +28,23 @@
 </template>
 
 <script>
-import User from "../../models/user";
 import { mapActions } from "vuex";
 export default {
   name: "LoginForm",
   data() {
     return {
-      user: new User("", ""),
-      loading: false,
-      message: ""
+      email: "",
+      password: ""
     };
   },
   methods: {
     ...mapActions(["login"]),
     handleLogin() {
-      this.loading = true;
-      if (this.user.email && this.user.password) {
-        this.login(this.user)
-          .then(() => {
-            this.$router.push(this.$route.query.redirect || "/");
-          })
-          .catch(err => {
-            console.log(err.message);
-          });
-      }
+      const email = this.email;
+      const password = this.password;
+      this.login({ email, password })
+        .then(() => this.$router.push(this.$route.query.redirect || "/"))
+        .catch(err => console.log(err.message));
     }
   }
 };
