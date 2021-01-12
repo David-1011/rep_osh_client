@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "About",
+  name: "Message",
   components: {},
   beforeRouteEnter(to, from, next) {
     if (from.name !== "Incident") {

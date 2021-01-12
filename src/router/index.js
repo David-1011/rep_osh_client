@@ -44,6 +44,11 @@ const routes = [
     path: '/incident',
     name: 'Incident',
     component: Incident,
+    props: (route) => ({
+      defMainArea: route.query.area,
+      defSubArea: route.query.subArea,
+      defInfo: route.query.info,
+    }),
     meta: {
       allowAnonymous: true,
     },

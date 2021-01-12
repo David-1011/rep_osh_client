@@ -53,7 +53,16 @@
 import { mapActions } from "vuex";
 export default {
   name: "EditPersonData",
-  props: ["personId", "incidentId"],
+  props: {
+    personId: {
+      type: String,
+      required: true
+    },
+    incidentId: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       id: this.incidentId,

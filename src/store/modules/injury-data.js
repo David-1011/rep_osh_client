@@ -24,9 +24,6 @@ const actions = {
   setInjuryTypes: ({ commit }, e) => {
     commit(AT.setInjuryTypes, e);
   },
-  resetInjuryData: ({ commit }) => {
-    commit(AT.resetInjuryData);
-  },
 };
 
 const getters = {};

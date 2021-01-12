@@ -38,10 +38,10 @@ export default {
     ...mapGetters(["AllInjuryTypes"])
   },
   methods: {
-    ...mapActions(["fetchInjuryType", "setInjuryTypes"])
+    ...mapActions(["fetchInjuryTypes", "setInjuryTypes"])
   },
   created() {
-    this.fetchInjuryType();
+    this.fetchInjuryTypes();
   }
 };
 </script>

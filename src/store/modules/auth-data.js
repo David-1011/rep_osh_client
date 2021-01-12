@@ -36,6 +36,7 @@ const actions = {
       commit(AT.authRequest);
       axios({ url: `${API_URL}/auth/login`, data: user, method: 'POST' })
         .then((resp) => {
+          console.log(resp.status);
           const token = resp.data.accessToken;
           const user = resp.data.user;
           localStorage.setItem('token', token);
@@ -43,6 +44,8 @@ const actions = {
           resolve(resp);
         })
         .catch((err) => {
+          err.response.status;
+          console.log(err);
           commit(AT.authError);
           localStorage.removeItem('token');
           reject(err);

@@ -1,19 +1,19 @@
 <template>
-  <Header />
+  <TheHeader />
   <main>
     <router-view class="p-1 p-md-3" />
   </main>
-  <Footer />
+  <TheFooter />
 </template>
 <script>
 import axios from "axios";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import TheHeader from "./components/layout/TheHeader";
+import TheFooter from "./components/layout/TheFooter";
 export default {
   name: "app",
   components: {
-    Header,
-    Footer
+    TheHeader,
+    TheFooter
   },
   created: function() {
     axios.interceptors.response.use(

@@ -2,19 +2,20 @@ export const AT = {
   authError: 'auth_error',
   authRequest: 'auth_request',
   authSuccess: 'auth_success',
-  fetchAreas: 'fetchAreas',
-  fetchInjurySpot: 'fetchInjurySpot',
-  fetchInjuryType: 'fetchInjuryType',
+
+  fetchInjurySpots: 'fetch_injury_spots',
+  fetchInjuryTypes: 'fetch_injury_types',
+  fetchMainAreas: 'fetch_main_areas',
+  fetchSubAreas: 'fetch_sub_areas',
 
   inciError: 'inci_Error',
   inciRequest: 'inci_Request',
   inciSuccess: 'inciSuccess',
 
-  fetchSubAreas: 'fetchSubAreas',
   loginFailure: 'loginFailure',
   loginSuccess: 'loginSuccess',
   logout: 'logout',
-  setAdditionalLocationInfo: 'setAdditionalLocationInfo',
+  setLocationInfo: 'set_location_info',
   setErrors: 'setErrors',
   setFirstName1: 'setFirstName1',
   setFirstName2: 'setFirstName2',
@@ -36,6 +37,7 @@ export const AT = {
   resetIncidentData: 'resetIncidentData',
   resetInjuryData: 'resetInjuryData',
   resetPersonalData: 'resetPersonalData',
+  resetValidation: 'reset_validation',
 };
 
 // A B C D E F G H I J K L M N O P Q R S T U V W X Y Z

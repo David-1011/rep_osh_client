@@ -4,16 +4,16 @@
     <div class="card-body">
       <div class="d-flex flex-column flex-md-row">
         <div class="col d-flex flex-column me-md-3">
-          <IncidentDateInput />
-          <IncidentTimeInput />
+          <IncidentDate />
+          <IncidentTime />
         </div>
         <div class="col d-flex flex-column ms-md-3">
-          <MainAreaSelector />
-          <SubAreaSelector />
-          <IncidentAdditionalLocationInfo />
+          <IncidentMainArea />
+          <IncidentSubArea :default-sub-area="defaultValue.defSubArea" />
+          <IncidentLocationInfo :default-info="defaultValue.defInfo" />
         </div>
       </div>
-      <IncidentDescriptionTextArea />
+      <IncidentDescription />
 
       <div class="row">
         <div class="col-sm-12 col-md-6"></div>
@@ -25,28 +25,36 @@
 </template>
 
 <script>
-import IncidentDateInput from "./ui/IncidentDateInput";
-import IncidentTimeInput from "./ui/IncidentTimeInput";
-import MainAreaSelector from "./ui/MainAreaSelector";
-import SubAreaSelector from "./ui/SubAreaSelector";
-import IncidentAdditionalLocationInfo from "./ui/IncidentAdditionalLocationInfoInput";
-import IncidentDescriptionTextArea from "./ui/IncidentDescrpiontTextArea";
+import IncidentDate from "./ui/IncidentInputDate";
+import IncidentTime from "./ui/IncidentInputTime";
+import IncidentMainArea from "./ui/IncidentSelectorMainArea";
+import IncidentSubArea from "./ui/IncidentSelectorSubArea";
+import IncidentLocationInfo from "./ui/IncidentInputLocationInfo";
+import IncidentDescription from "./ui/IncidentTextAreaDescription";
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   name: "IncidentData",
   components: {
-    IncidentDateInput,
-    IncidentTimeInput,
-    MainAreaSelector,
-    SubAreaSelector,
-    IncidentAdditionalLocationInfo,
-    IncidentDescriptionTextArea
+    IncidentDate,
+    IncidentTime,
+    IncidentMainArea,
+    IncidentSubArea,
+    IncidentLocationInfo,
+    IncidentDescription
   },
-  computed: {
-    incidentMainArea: {
-      get() {
-        return this.$store.state.incidentData.mainArea;
-      }
+  props: {
+    defaultValue: {
+      type: Object
     }
+  },
+
+  setup() {
+    const store = useStore();
+
+    return {
+      incidentMainArea: computed(() => store.state.incidentData.mainArea)
+    };
   }
 };
 </script>

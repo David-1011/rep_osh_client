@@ -13,7 +13,14 @@
         <PersonalData />
       </div>
       <div class="col-sm-12 col-md-8">
-        <IncidentData />
+        {{ defMainArea }} {{ defSubArea }} {{ defInfo }}
+        <IncidentData
+          :default-value="{
+            defMainArea,
+            defSubArea,
+            defInfo,
+          }"
+        />
       </div>
       <div class="col-12">
         <InjuryData />
@@ -21,7 +28,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <button @click="test" type="button" class="btn btn-success">
+            <button
+              @click="submitIncident"
+              type="button"
+              class="btn btn-success"
+              :disabled="loading"
+            >
               Absenden
             </button>
           </div>
@@ -35,7 +47,8 @@
 import PersonalData from "../components/PersonalData";
 import IncidentData from "../components/IncidentData";
 import InjuryData from "../components/InjuryData";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
+import { AT } from "../constants/action-types";
 export default {
   name: "Incident",
   components: {
@@ -43,10 +56,52 @@ export default {
     IncidentData,
     InjuryData
   },
+  props: {
+    defMainArea: {
+      type: String,
+      default: ""
+    },
+    defSubArea: {
+      type: String,
+      default: ""
+    },
+    defInfo: {
+      type: String,
+      default: ""
+    }
+  },
+  data() {
+    return {
+      loading: false
+    };
+  },
+  computed: {
+    params() {
+      return this.$route.query;
+    }
+  },
   methods: {
     ...mapActions(["postIncident"]),
-    test() {
-      this.postIncident();
+    ...mapMutations({
+      resetPersonalData: AT.resetPersonalData,
+      resetIncidentData: AT.resetIncidentData,
+      resetInjuryData: AT.resetInjuryData,
+      resetValidation: AT.resetValidation
+    }),
+    submitIncident() {
+      this.loading = true;
+      this.resetValidation();
+      this.postIncident()
+        .then(() => {
+          this.resetPersonalData();
+          this.resetIncidentData();
+          this.resetInjuryData();
+          this.$router.push("/message/1");
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err.statusText);
+        });
     }
   }
 };

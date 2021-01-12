@@ -59,9 +59,6 @@ const actions = {
   setNoWitness: ({ commit }, value) => {
     commit(AT.setNoWitness, value);
   },
-  resetPersonalData: ({ commit }) => {
-    commit(AT.resetPersonalData);
-  },
 };
 
 const getters = {

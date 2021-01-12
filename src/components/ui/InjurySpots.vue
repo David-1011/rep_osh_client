@@ -38,10 +38,10 @@ export default {
     ...mapGetters(["AllInjurySpots"])
   },
   methods: {
-    ...mapActions(["fetchInjurySpot", "setInjurySpots"])
+    ...mapActions(["fetchInjurySpots", "setInjurySpots"])
   },
   created() {
-    this.fetchInjurySpot();
+    this.fetchInjurySpots();
   }
 };
 </script>

@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import { AT } from '../../constants/action-types';
 import { API_URL } from '../../constants/api';
 
@@ -11,52 +9,70 @@ const state = {
 };
 
 const mutations = {
-  [AT.fetchAreas]: (state, mainAreas) => (state.mainAreas = mainAreas),
+  [AT.fetchMainAreas]: (state, mainAreas) => (state.mainAreas = mainAreas),
   [AT.fetchSubAreas]: (state, subAreas) => (state.subAreas = subAreas),
-  [AT.fetchInjurySpot]: (state, injurySpots) =>
+  [AT.fetchInjurySpots]: (state, injurySpots) =>
     (state.injurySpots = injurySpots),
-  [AT.fetchInjuryType]: (state, injuryTypes) =>
+  [AT.fetchInjuryTypes]: (state, injuryTypes) =>
     (state.injuryTypes = injuryTypes),
 };
 
 const actions = {
-  fetchMainAreas: async ({ commit }) => {
-    if (state.mainAreas.length === 0) {
-      axios
-        .get(`${API_URL}/mast/mainAreas/`)
+  fetchMainAreas({ commit }) {
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/mast/mainAreas/`)
+        .then((res) => res.json())
         .then((res) => {
-          commit(AT.fetchAreas, res.data);
+          commit(AT.fetchMainAreas, res);
+          resolve(res);
         })
-        .catch((err) => console.log(err.message));
-    }
+        .catch((err) => {
+          console.log(err);
+          reject();
+        });
+    });
   },
-  fetchSubAreas: async ({ commit }) => {
-    if (state.subAreas.length === 0) {
-      axios
-        .get(`${API_URL}/mast/subAreas/`)
+
+  fetchSubAreas({ commit }) {
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/mast/subAreas/`)
+        .then((res) => res.json())
         .then((res) => {
-          commit(AT.fetchSubAreas, res.data);
+          commit(AT.fetchSubAreas, res);
+          resolve(res);
         })
-        .catch((err) => console.log(err.message));
-    }
+        .catch((err) => {
+          console.log(err);
+          reject();
+        });
+    });
   },
-  fetchInjurySpot: async ({ commit }) => {
-    if (state.injurySpots.length === 0) {
-      const response = await axios.get(`${API_URL}/mast/injurySpots/`);
-      commit(AT.fetchInjurySpot, response.data);
-    }
+
+  fetchInjurySpots({ commit }) {
+    fetch(`${API_URL}/mast/injurySpots/`)
+      .then((res) => res.json())
+      .then((res) => {
+        commit(AT.fetchInjurySpots, res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
-  fetchInjuryType: async ({ commit }) => {
-    if (state.injuryTypes.length === 0) {
-      const response = await axios.get(`${API_URL}/mast/injuryTypes/`);
-      commit(AT.fetchInjuryType, response.data);
-    }
+
+  fetchInjuryTypes({ commit }) {
+    fetch(`${API_URL}/mast/injuryTypes/`)
+      .then((res) => res.json())
+      .then((res) => {
+        commit(AT.fetchInjuryTypes, res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 
 const getters = {
-  AllMainAreas: (state) => state.mainAreas,
-  SubAreas: (state) => (picked, mainAreas) => {
+  subAreas: (state) => (picked, mainAreas) => {
     const filter = picked === '' ? mainAreas : picked;
     return state.subAreas.filter((sub) => sub.masMainAreaId === filter);
   },
