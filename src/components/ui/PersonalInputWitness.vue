@@ -40,40 +40,48 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   name: "PersonWitness",
-  computed: {
-    firstName2: {
-      get() {
-        return this.$store.state.personalData.witness.firstName;
+  setup() {
+    const store = useStore();
+
+    const valid1 = computed(() => store.state.validation.witnessValid1);
+
+    const firstName2 = computed({
+      get: () => {
+        return store.state.personalData.people[1].firstName;
       },
-      set(value) {
-        this.setFirstName2(value);
+      set: value => {
+        store.dispatch("setFirstName2", value);
       }
-    },
-    lastName2: {
-      get() {
-        return this.$store.state.personalData.witness.lastName;
+    });
+
+    const lastName2 = computed({
+      get: () => {
+        return store.state.personalData.people[1].lastName;
       },
-      set(value) {
-        this.setLastName2(value);
+      set: value => {
+        store.dispatch("setLastName2", value);
       }
-    },
-    noWitness: {
-      get() {
-        return this.$store.state.personalData.witness.noWitness;
+    });
+
+    const noWitness = computed({
+      get: () => {
+        return store.state.personalData.noWitness;
       },
-      set(value) {
-        this.setNoWitness(value);
+      set: value => {
+        store.dispatch("setNoWitness", value);
       }
-    },
-    valid1() {
-      return this.$store.state.validation.witnessValid1;
-    }
-  },
-  methods: {
-    ...mapActions(["setFirstName2", "setLastName2", "setNoWitness"])
+    });
+
+    return {
+      firstName2,
+      lastName2,
+      noWitness,
+      valid1
+    };
   }
 };
 </script>

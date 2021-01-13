@@ -2,63 +2,62 @@ import { AT } from '../../constants/action-types';
 
 const getDefaultState = () => {
   return {
-    injured: {
-      firstName: '',
-      lastName: '',
-      type: 'Injured',
-    },
-    witness: {
-      firstName: '',
-      lastName: '',
-      type: 'Witness',
-      noWitness: false,
-    },
+    people: [
+      {
+        firstName: '',
+        lastName: '',
+        type: 'Injured',
+      },
+      {
+        firstName: '',
+        lastName: '',
+        type: 'Witness',
+      },
+    ],
+    noWitness: false,
   };
 };
 
 const state = getDefaultState();
 
 const mutations = {
-  [AT.setFirstName1]: (state, name) => (state.injured.firstName = name),
-  [AT.setLastName1]: (state, name) => (state.injured.lastName = name),
+  [AT.setFirstName1]: (state, name) => (state.people[0].firstName = name),
+  [AT.setLastName1]: (state, name) => (state.people[0].lastName = name),
   [AT.setFirstName2]: (state, name) => {
-    state.witness.firstName = name;
-    if (state.witness.lastName.length + state.witness.firstName.length > 0) {
-      state.witness.noWitness = false;
+    state.people[1].firstName = name;
+    if (
+      state.people[1].lastName.length + state.people[1].firstName.length >
+      0
+    ) {
+      state.noWitness = false;
     }
   },
   [AT.setLastName2]: (state, name) => {
-    state.witness.lastName = name;
-    if (state.witness.lastName.length + state.witness.firstName.length > 0) {
-      state.witness.noWitness = false;
+    state.people[1].lastName = name;
+    if (
+      state.people[1].lastName.length + state.people[1].firstName.length >
+      0
+    ) {
+      state.noWitness = false;
     }
   },
   [AT.setNoWitness]: (state, noWitness) => {
-    state.witness.noWitness = noWitness;
-    if (state.witness.noWitness) {
-      state.witness.firstName = '';
-      state.witness.lastName = '';
+    state.noWitness = noWitness;
+    if (state.noWitness) {
+      state.people[1].firstName = '';
+      state.people[1].lastName = '';
     }
   },
   [AT.resetPersonalData]: (state) => Object.assign(state, getDefaultState()),
 };
 
 const actions = {
-  setFirstName1: ({ commit }, value) => {
-    commit(AT.setFirstName1, value);
-  },
-  setLastName1: ({ commit }, value) => {
-    commit(AT.setLastName1, value);
-  },
-  setFirstName2: ({ commit }, value) => {
-    commit(AT.setFirstName2, value);
-  },
-  setLastName2: ({ commit }, value) => {
-    commit(AT.setLastName2, value);
-  },
-  setNoWitness: ({ commit }, value) => {
-    commit(AT.setNoWitness, value);
-  },
+  setFirstName1: ({ commit }, value) => commit(AT.setFirstName1, value),
+  setLastName1: ({ commit }, value) => commit(AT.setLastName1, value),
+  setFirstName2: ({ commit }, value) => commit(AT.setFirstName2, value),
+  setLastName2: ({ commit }, value) => commit(AT.setLastName2, value),
+  setNoWitness: ({ commit }, value) => commit(AT.setNoWitness, value),
+  resetPersonalData: ({ commit }) => commit(AT.resetPersonalData),
 };
 
 const getters = {

@@ -4,10 +4,12 @@
     <input
       type="date"
       class="form-control"
+      :class="{ 'is-valid': valid1 == 1, 'is-invalid': valid1 == -1 }"
       id="date1"
       v-model="incidentDate"
       :max="maxDate"
     />
+    <div class="invalid-feedback">Ungültiger Zeitpunkt.</div>
   </div>
 </template>
 
@@ -22,6 +24,8 @@ export default {
 
     const maxDate = moment().format("YYYY-MM-DD");
 
+    const valid1 = computed(() => store.state.validation.datetimeValid1);
+
     const incidentDate = computed({
       get: () => {
         return store.state.incidentData.incidentDate;
@@ -32,6 +36,7 @@ export default {
     });
 
     return {
+      valid1,
       maxDate,
       incidentDate
     };

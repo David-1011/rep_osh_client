@@ -41,6 +41,8 @@ const actions = {
 
   setIncidentDescription: ({ commit }, value) =>
     commit(AT.setIncidentDescription, value),
+
+  resetIncidentData: ({ commit }) => commit(AT.resetIncidentData),
 };
 
 const getters = {};

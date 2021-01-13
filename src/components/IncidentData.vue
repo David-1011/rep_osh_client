@@ -1,6 +1,6 @@
 <template>
   <div class="card h-100">
-    <div class="card-header text-white bg-success">2. Unfalldaten</div>
+    <div class="card-header text-white bg-tkTurquoise">2. Unfalldaten</div>
     <div class="card-body">
       <div class="d-flex flex-column flex-md-row">
         <div class="col d-flex flex-column me-md-3">
@@ -14,12 +14,6 @@
         </div>
       </div>
       <IncidentDescription />
-
-      <div class="row">
-        <div class="col-sm-12 col-md-6"></div>
-        <div class="col-sm-12 col-md-6"></div>
-        <div class="col-12"></div>
-      </div>
     </div>
   </div>
 </template>

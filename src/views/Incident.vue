@@ -2,7 +2,7 @@
   <div class="container">
     <form class="row g-3 mt-1">
       <div class="col-12">
-        <div class="card bg-success text-white">
+        <div class="card bg-tkTurquoise text-white">
           <div class="card-body">
             <h3 class="mb-0">Verbandsbucheintrag</h3>
           </div>
@@ -13,7 +13,6 @@
         <PersonalData />
       </div>
       <div class="col-sm-12 col-md-8">
-        {{ defMainArea }} {{ defSubArea }} {{ defInfo }}
         <IncidentData
           :default-value="{
             defMainArea,
@@ -31,7 +30,7 @@
             <button
               @click="submitIncident"
               type="button"
-              class="btn btn-success"
+              class="btn btn-tkTurquoise text-white"
               :disabled="loading"
             >
               Absenden
@@ -47,8 +46,8 @@
 import PersonalData from "../components/PersonalData";
 import IncidentData from "../components/IncidentData";
 import InjuryData from "../components/InjuryData";
-import { mapActions, mapMutations } from "vuex";
-import { AT } from "../constants/action-types";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   name: "Incident",
   components: {
@@ -70,39 +69,42 @@ export default {
       default: ""
     }
   },
-  data() {
-    return {
-      loading: false
-    };
-  },
-  computed: {
-    params() {
-      return this.$route.query;
-    }
-  },
-  methods: {
-    ...mapActions(["postIncident"]),
-    ...mapMutations({
-      resetPersonalData: AT.resetPersonalData,
-      resetIncidentData: AT.resetIncidentData,
-      resetInjuryData: AT.resetInjuryData,
-      resetValidation: AT.resetValidation
-    }),
-    submitIncident() {
-      this.loading = true;
-      this.resetValidation();
-      this.postIncident()
+
+  setup() {
+    const store = useStore();
+
+    const router = useRouter();
+
+    let loading = false;
+
+    const submitIncident = () => {
+      const data = {
+        personalData: store.state.personalData,
+        incidentData: store.state.incidentData,
+        injuryData: store.state.injuryData
+      };
+
+      loading = true;
+
+      store.dispatch("resetValidation");
+      store
+        .dispatch("postIncident", data)
         .then(() => {
-          this.resetPersonalData();
-          this.resetIncidentData();
-          this.resetInjuryData();
-          this.$router.push("/message/1");
+          store.dispatch("resetPersonalData");
+          store.dispatch("resetIncidentData");
+          store.dispatch("resetInjuryData");
+          router.push("/message/1");
         })
         .catch(err => {
-          this.loading = false;
+          loading = false;
           console.log(err.statusText);
         });
-    }
+    };
+
+    return {
+      loading,
+      submitIncident
+    };
   }
 };
 </script>

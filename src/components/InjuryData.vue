@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header text-white bg-success">
+    <div class="card-header text-white bg-tkTurquoise">
       3. Verletzungsbeschreibung
     </div>
     <div class="card-body">
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import InjurySpots from "./ui/InjurySpots";
-import InjuryTypes from "./ui/InjuryTypes";
+import InjurySpots from "./ui/InjuryMultiSelectorSpots";
+import InjuryTypes from "./ui/InjuryMultiSelectorTypes";
 
 export default {
   name: "InjuryData",

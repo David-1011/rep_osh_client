@@ -2,10 +2,10 @@
   <div>
     <label for="mainArea1" class="form-label">Bereich</label>
     <select
-      @click="selectMainArea"
       id="mainArea1"
       class="form-select"
       :class="{ 'is-valid': valid1 == 1, 'is-invalid': valid1 == -1 }"
+      v-model="incidentMainArea"
     >
       <option selected disabled value="">Öffnen</option>
       <option
@@ -40,17 +40,21 @@ export default {
       if (index) store.dispatch("setMainArea", index.id);
     });
 
-    const incidentMainArea = computed(() => store.state.incidentData.mainArea);
+    const incidentMainArea = computed({
+      get: () => {
+        return store.state.incidentData.mainArea;
+      },
+      set: value => {
+        store.dispatch("setMainArea", value);
+      }
+    });
 
     const valid1 = computed(() => store.state.validation.mainAreaValid);
 
     const allMainAreas = computed(() => store.state.masterData.mainAreas);
 
-    const selectMainArea = e => store.dispatch("setMainArea", e.target.value);
-
     return {
       incidentMainArea,
-      selectMainArea,
       valid1,
       allMainAreas
     };

@@ -5,6 +5,7 @@ export const getDefaultState = () => {
       injuredValid1: 0,
       injuredValid2: 0,
       witnessValid1: 0,
+      datetimeValid1: 0,
       mainAreaValid: 0,
       subAreaValid: 0,
       descriptionValid: 0,

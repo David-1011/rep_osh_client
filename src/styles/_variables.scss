@@ -42,6 +42,32 @@ $green: #198754 !default;
 $teal: #20c997 !default;
 $cyan: #0dcaf0 !default;
 
+// NEU
+$blue: #00a0f5;
+$purple: #a51482;
+$red: #e60050;
+$orange: #ffb400;
+$yellow: #fae100;
+$green: #9bc832;
+$teal: #0f968c;
+
+$white: #fff;
+$gray-200: #eef0f2;
+$gray-400: #d9dee8;
+$gray-600: #78879b;
+$gray-800: #4b5564;
+$black: #000;
+
+$tkDarkBlue: #003c7d;
+$tkMediumBlue: #0055be;
+$tkBlue: #0078dc;
+$tkBrightBlue: #50afe1;
+$tkLightBlue: #73c3f0;
+
+$secondary: $gray-800;
+$body-color: $gray-800;
+$body-bg: $gray-200;
+
 // scss-docs-start colors-map
 $colors: (
   'blue': $blue,
@@ -79,6 +105,23 @@ $theme-colors: (
   'danger': $danger,
   'light': $light,
   'dark': $dark,
+  'tkRed': $red,
+  'tkPurple': $purple,
+  'tkYellow': $yellow,
+  'tkGreen': $green,
+  'tkTurquoise': $teal,
+  'tkOrange': $orange,
+  'tkLightGray': $gray-200,
+  'tkGray': $gray-400,
+  'tkMediumGray': $gray-600,
+  'tkDarkGray': $gray-800,
+  'tkDarkBlue': $tkDarkBlue,
+  'tkMedium': $tkMediumBlue,
+  'tkBlue': $tkBlue,
+  'tkBrightBlue': $tkBrightBlue,
+  'tkLightBlue': $tkLightBlue,
+  'tkBrandBlue': $blue,
+  'tkWhite': $white,
 ) !default;
 // scss-docs-end theme-colors-map
 

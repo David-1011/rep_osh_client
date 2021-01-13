@@ -32,35 +32,42 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
-  name: "PersonInjured",
-  computed: {
-    firstName1: {
-      get() {
-        return this.$store.state.personalData.injured.firstName;
+  name: "PersonalInputInjured",
+
+  setup() {
+    const store = useStore();
+
+    const valid1 = computed(() => store.state.validation.injuredValid1);
+
+    const valid2 = computed(() => store.state.validation.injuredValid2);
+
+    const firstName1 = computed({
+      get: () => {
+        return store.state.personalData.people[0].firstName;
       },
-      set(value) {
-        this.setFirstName1(value);
+      set: value => {
+        store.dispatch("setFirstName1", value);
       }
-    },
-    lastName1: {
-      get() {
-        return this.$store.state.personalData.injured.lastName;
+    });
+
+    const lastName1 = computed({
+      get: () => {
+        return store.state.personalData.people[0].lastName;
       },
-      set(value) {
-        this.setLastName1(value);
+      set: value => {
+        store.dispatch("setLastName1", value);
       }
-    },
-    valid1() {
-      return this.$store.state.validation.injuredValid1;
-    },
-    valid2() {
-      return this.$store.state.validation.injuredValid2;
-    }
-  },
-  methods: {
-    ...mapActions(["setFirstName1", "setLastName1"])
+    });
+
+    return {
+      firstName1,
+      lastName1,
+      valid1,
+      valid2
+    };
   }
 };
 </script>

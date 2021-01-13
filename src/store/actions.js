@@ -37,4 +37,6 @@ export default {
         });
     });
   },
+
+  resetValidation: ({ commit }) => commit(AT.resetValidation),
 };

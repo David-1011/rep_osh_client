@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header text-white bg-success">
+    <div class="card-header text-white bg-tkTurquoise">
       1. Persönliche Informationen
     </div>
     <div class="card-body">
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import PersonInjured from "./ui/PersonInjured";
-import PersonWitness from "./ui/PersonWitness";
+import PersonInjured from "./ui/PersonalInputInjured";
+import PersonWitness from "./ui/PersonalInputWitness";
 
 export default {
   name: "PersonalData",
